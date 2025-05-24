@@ -11,6 +11,6 @@ app.use("/api", router);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
-  console.log(`Server läuft auf http://localhost:${PORT}, kleine Änderung`)
+  console.log(`Server läuft auf http://localhost:${PORT}, Änderung`)
 
 );
