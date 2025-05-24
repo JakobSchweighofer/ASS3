@@ -1,14 +1,19 @@
 name: Build and Push Docker Images
-on: [push]
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   ci:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Log in to GHCR
+      - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
@@ -21,7 +26,7 @@ jobs:
           context: ./app
           file: ./app/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}-app:latest
+          tags: ghcr.io/jakobschweighofer/ass3-app:latest
 
       - name: Build & Push DB
         uses: docker/build-push-action@v5
@@ -29,4 +34,4 @@ jobs:
           context: ./db
           file: ./db/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}-db:latest
+          tags: ghcr.io/jakobschweighofer/ass3-db:latest
