@@ -1,9 +1,15 @@
 name: Build and Push Docker Images
 
+# löst bei jedem Push gegen main aus
 on:
   push:
     branches:
       - main
+
+# hier geben wir explizit Schreib-Rechte für Packages (GHCR) und Leserechte für Repo-Inhalt
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   ci:
